@@ -60,24 +60,24 @@ class Post extends StatelessWidget {
       children: <Widget>[
         IconButton(
           onPressed: null,
-          icon: ImageIcon(AssetImage('assets/images/bookmark.png')),
-          color: Colors.black87,
+          icon: ImageIcon(AssetImage('assets/images/heart_selected.png')), color: Colors.black54, iconSize: 20,
+          //icon: Icon(Icons.bookmark_outline_outlined, color: Colors.black54),
         ),
         IconButton(
           onPressed: null,
-          icon: ImageIcon(AssetImage('assets/images/comment.png')),
-          color: Colors.black87,
+          icon: ImageIcon(AssetImage('assets/images/comment.png')), color: Colors.black54, iconSize: 20,
+          //icon: Icon(Icons.mode_comment_outlined, color: Colors.black54),
         ),
         IconButton(
           onPressed: null,
-          icon: ImageIcon(AssetImage('assets/images/direct_message.png')),
-          color: Colors.black87,
+          icon: ImageIcon(AssetImage('assets/images/direct_message.png')),  color: Colors.black54, iconSize: 20,
+          //icon: Icon(Icons.sms_outlined, color: Colors.black54),
         ),
         Spacer(), // Widget 사이에 공간을 만들어줌.
         IconButton(
           onPressed: null,
-          icon: ImageIcon(AssetImage('assets/images/heart_selected.png')),
-          color: Colors.black87,
+          icon: ImageIcon(AssetImage('assets/images/bookmark.png')), color: Colors.black54, iconSize: 20,
+          //icon: Icon(Icons.favorite_border_rounded, color: Colors.black54),
         ),
       ],
     );
@@ -90,8 +90,8 @@ class Post extends StatelessWidget {
           padding: const EdgeInsets.all(common_xxs_gap),
           child: RoundedAvatar(), // widgets/rounded_avatar.dart
         ),
-        Expanded(child: Text(generateRandomString(10))),
-        // Expanded : Row의 남는 공간을 모두 채워줌
+        Expanded(child: Text('Jae Min')),
+        // Expanded : Row/Column의 남는 공간을 모두 채워줌
         IconButton(
           onPressed: null,
           icon: Icon(

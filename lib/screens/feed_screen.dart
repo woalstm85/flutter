@@ -7,17 +7,17 @@ class FeedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CupertinoNavigationBar(
-        leading: IconButton(
+        leading: IconButton(  // leading : 타일의 앞부분을 구성
             onPressed: null,
             icon: Icon(
               CupertinoIcons.photo_camera_solid, // or Icons.camera_alt,
               color: Colors.black87,
             )),
-        middle: Text(
+        middle: Text( // middle : 타일의 중간을 구성
           'instagram',
           style: TextStyle(fontFamily: 'VeganStyle'),
         ),
-        trailing: Row(
+        trailing: Row(  // trailing : 타일의 뒷부분을 구성
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             IconButton(

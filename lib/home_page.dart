@@ -14,10 +14,10 @@ class HomePage extends StatefulWidget {
 class _HomepageState extends State<HomePage> {
   List<BottomNavigationBarItem> btmNavItems = [
     BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'),
-    BottomNavigationBarItem(icon: Icon(Icons.pageview), label: 'search'),
-    BottomNavigationBarItem(icon: Icon(Icons.note_add), label: 'add'),
-    BottomNavigationBarItem(icon: Icon(Icons.perm_media), label: 'media'),
-    BottomNavigationBarItem(icon: Icon(Icons.account_box), label: 'account'),
+    BottomNavigationBarItem(icon: Icon(Icons.image_search_outlined), label: 'search'),
+    BottomNavigationBarItem(icon: Icon(Icons.add_a_photo_outlined), label: 'add'),
+    BottomNavigationBarItem(icon: Icon(Icons.shopping_bag_outlined), label: 'shop'),
+    BottomNavigationBarItem(icon: Icon(Icons.account_circle_outlined), label: 'profile'),
   ];
 
   int _selectedIndex = 0;
@@ -48,9 +48,9 @@ class _HomepageState extends State<HomePage> {
         items: btmNavItems,
         showUnselectedLabels: false,
         // 선택 안된 아이템의 text 표시 여부
-        showSelectedLabels: false,
+        showSelectedLabels: true,
         // 선택된 아이템의 text 표시 여부
-        //selectedFontSize: 14, //선택된 아이템의 폰트사이즈
+        selectedFontSize: 12, //선택된 아이템의 폰트사이즈
         //unselectedFontSize: 14, //선택 안된 아이템의 폰트사이즈
         type: BottomNavigationBarType.fixed,
         unselectedItemColor: Colors.grey,
