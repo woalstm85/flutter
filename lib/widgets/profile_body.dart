@@ -39,7 +39,7 @@ class _ProfileBodyState extends State<ProfileBody> {
               crossAxisCount: 3, // crossAxisCount: 칸 수
               childAspectRatio: 1, // childAspectRatio : 비율
               children: List.generate(
-                30,
+                84,
                 (index) => CachedNetworkImage(
                   fit: BoxFit.cover,
                   imageUrl: "https://picsum.photos/id/$index/100/100",
