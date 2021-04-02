@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_instagram/constants/screen_size.dart';
 import 'package:flutter_instagram/screens/feed_screen.dart';
 import 'package:flutter_instagram/screens/profile_screen.dart';
 
@@ -38,6 +39,7 @@ class _HomepageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    if (size == null) size = MediaQuery.of(context).size; // device 화면사이즈 가져오기.
     return Scaffold(
       body: IndexedStack(
         // 페이지를 re-build가 아닌 쌓는형식

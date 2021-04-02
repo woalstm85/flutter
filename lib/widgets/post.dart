@@ -2,13 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram/constants/common_size.dart';
 import 'package:flutter_instagram/constants/randum_text.dart';
+import 'package:flutter_instagram/constants/screen_size.dart';
 import 'package:flutter_instagram/widgets/comment.dart';
 import 'package:flutter_instagram/widgets/my_progress_indicator.dart';
 import 'package:flutter_instagram/widgets/rounded_avatar.dart';
 
 class Post extends StatelessWidget {
   final int index; // final은 값이 지정되면 변경할수 없음.
-  Size size;
 
   Post(
     this.index, {
@@ -17,7 +17,6 @@ class Post extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (size == null) size = MediaQuery.of(context).size; // device 화면사이즈 가져오기.
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,  ////MainAxisAlignment, CrossAxisAlignment 정렬기능 .start : Column(왼쪽), Row(위쪽) 정렬
