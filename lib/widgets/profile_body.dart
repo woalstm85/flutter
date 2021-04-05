@@ -7,7 +7,6 @@ import 'package:flutter_instagram/screens/profile_screen.dart';
 import 'package:flutter_instagram/widgets/rounded_avatar.dart';
 
 class ProfileBody extends StatefulWidget {
-
   final Function onMenuChanged;
 
   const ProfileBody({Key key, this.onMenuChanged}) : super(key: key);
@@ -16,11 +15,26 @@ class ProfileBody extends StatefulWidget {
   _ProfileBodyState createState() => _ProfileBodyState();
 }
 
-class _ProfileBodyState extends State<ProfileBody> {
+class _ProfileBodyState extends State<ProfileBody>
+    with SingleTickerProviderStateMixin {
   //bool selectedLeft = true;
   SelectedTab _selectedTab = SelectedTab.left;
   double _leftImageMarginX = 0;
   double _rightImageMarginX = size.width;
+  AnimationController _iconAnimationController;
+
+  @override
+  void initState() {
+    _iconAnimationController =
+        AnimationController(vsync: this, duration: duration);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _iconAnimationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,9 +110,15 @@ class _ProfileBodyState extends State<ProfileBody> {
           textAlign: TextAlign.center,
         )),
         IconButton(
-          icon: Icon(Icons.menu),
+          icon: AnimatedIcon(
+            icon: AnimatedIcons.menu_close,
+            progress: _iconAnimationController,
+          ),
           onPressed: () {
             widget.onMenuChanged();
+            _iconAnimationController.status == AnimationStatus.completed
+                ? _iconAnimationController.reverse()
+                : _iconAnimationController.forward();
           },
         )
       ],
@@ -170,13 +190,27 @@ class _ProfileBodyState extends State<ProfileBody> {
 
   Widget _userBio() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: common_gap),
-      child: Text(
-        'Show me the money!!',
-        style: TextStyle(
-          fontWeight: FontWeight.w400,
-          fontSize: 12,
-        ),
+      padding: const EdgeInsets.symmetric(
+          horizontal: common_gap, vertical: common_xxs_gap),
+      child: Row(
+        children: [
+          Expanded(
+            child: Table(
+              children: [
+                TableRow(
+                  children: [
+                    Text('1985.09.04', style: TextStyle(fontSize: 11, fontWeight: FontWeight.w300), ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    Text('Show me the money!!', style: TextStyle(fontSize: 11, fontWeight: FontWeight.w300), ),
+                  ],
+                ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
@@ -194,7 +228,8 @@ class _ProfileBodyState extends State<ProfileBody> {
             ),
           ),
           child: Text('Edit Profile',
-              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black54)),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold, color: Colors.black54)),
           onPressed: () {},
         ),
       ),
