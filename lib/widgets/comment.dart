@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram/constants/common_size.dart';
-import 'package:flutter_instagram/constants/randum_text.dart';
 import 'package:flutter_instagram/widgets/rounded_avatar.dart';
 
 class Comment extends StatelessWidget {
