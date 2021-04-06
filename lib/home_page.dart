@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram/constants/screen_size.dart';
+import 'package:flutter_instagram/screens/camera_screen.dart';
 import 'package:flutter_instagram/screens/feed_screen.dart';
 import 'package:flutter_instagram/screens/profile_screen.dart';
 
@@ -16,7 +17,7 @@ class _HomepageState extends State<HomePage> {
   List<BottomNavigationBarItem> btmNavItems = [
     BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'),
     BottomNavigationBarItem(icon: Icon(Icons.image_search_outlined), label: 'search'),
-    BottomNavigationBarItem(icon: Icon(Icons.add_a_photo_outlined), label: 'add'),
+    BottomNavigationBarItem(icon: Icon(Icons.add_a_photo_outlined), label: 'camera'),
     BottomNavigationBarItem(icon: Icon(Icons.shopping_bag_outlined), label: 'shop'),
     BottomNavigationBarItem(icon: Icon(Icons.account_circle_outlined), label: 'profile'),
   ];
@@ -52,7 +53,8 @@ class _HomepageState extends State<HomePage> {
         // 선택 안된 아이템의 text 표시 여부
         showSelectedLabels: true,
         // 선택된 아이템의 text 표시 여부
-        selectedFontSize: 12, //선택된 아이템의 폰트사이즈
+        selectedFontSize: 12,
+        //선택된 아이템의 폰트사이즈
         //unselectedFontSize: 14, //선택 안된 아이템의 폰트사이즈
         type: BottomNavigationBarType.fixed,
         unselectedItemColor: Colors.grey,
@@ -67,8 +69,26 @@ class _HomepageState extends State<HomePage> {
   }
 
   void _onBtmItemClick(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    switch (index) {
+      case 2:
+        _openCamera();
+        break;
+      default:
+        {
+          setState(() {
+            _selectedIndex = index;
+          });
+        }
+    }
+  }
+
+  void _openCamera() {
+    /**
+     * Navigator :  페이지 이동을 위한 class
+     * push : Stack으로 페이지위에 카메라 페이지를 띄운거라 <- (back) 버튼이 자동으로 생김
+     */
+    
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => CameraScreen()));
   }
 }
