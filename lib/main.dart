@@ -13,8 +13,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomePage(), // Refactor - flutter widget
-//      home: AuthScreen(), // Refactor - flutter widget
+//      home: HomePage(), // Refactor - flutter widget
+      home: AuthScreen(), // Refactor - flutter widget
       theme: ThemeData(primarySwatch: white), //전체적인 Theme을 생성 모든 화면에 적용
     );
   }
