@@ -7,7 +7,8 @@ class CameraState extends ChangeNotifier {
   bool _readyTakePhoto = false;
 
   void dispose() {
-    if (_controller != null) _controller.dispose();
+    if (_controller != null)
+      _controller.dispose();
     _controller = null;
     _cameraDescription = null;
     _readyTakePhoto = false;

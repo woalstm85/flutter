@@ -116,8 +116,11 @@ class _HomepageState extends State<HomePage> {
   }
 
   Future<bool> checkIfPermissionGranted(BuildContext context) async {
-    Map<Permission, PermissionStatus> statuses =
-        await [Permission.camera, Permission.microphone].request();
+    Map<Permission, PermissionStatus> statuses = await [
+      Permission.camera,
+      Permission.microphone,
+      Permission.storage
+    ].request();
     bool permitted = true;
 
     statuses.forEach((permission, permissionStatus) {

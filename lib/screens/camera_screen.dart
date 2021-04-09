@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram/models/camera_state.dart';
+import 'package:flutter_instagram/models/gallery_state.dart';
+import 'package:flutter_instagram/widgets/my_gallery.dart';
 import 'package:flutter_instagram/widgets/take_photo.dart';
 import 'package:provider/provider.dart';
 
 class CameraScreen extends StatefulWidget {
   CameraState _cameraState = CameraState();
+  GalleryState _galleryState = GalleryState();
 
   @override
   _CameraScreenState createState() {
     _cameraState.getReadyToTakePhoto();
+    _galleryState.initProvider();
     return _CameraScreenState();
   }
 }
@@ -30,6 +34,7 @@ class _CameraScreenState extends State<CameraScreen> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<CameraState>.value(value: widget._cameraState), // or ChangeNotifierProvider(create: (context)=> CameraState(),)
+        ChangeNotifierProvider<GalleryState>.value(value: widget._galleryState),
       ],
       child: Scaffold(
         appBar: AppBar(
@@ -39,9 +44,7 @@ class _CameraScreenState extends State<CameraScreen> {
         body: PageView( // PageView :여러 페이지를 한 화면에서 처리할 수 있게 해주는 위젯
           controller: _pageController,
           children: <Widget>[
-            Container(
-              color: Colors.teal,
-            ),
+            MyGallery(),
             TakePhoto(),
             Container(
               color: Colors.lightGreenAccent,
