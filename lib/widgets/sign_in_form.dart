@@ -12,8 +12,10 @@ class SignInForm extends StatefulWidget {
 class _SignInFormState extends State<SignInForm> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  TextEditingController _emailController = TextEditingController(); // TextFormField 를 사용시 필수
-  TextEditingController _pwController = TextEditingController(); // TextFormField 를 사용시 필수
+  TextEditingController _emailController =
+      TextEditingController(); // TextFormField 를 사용시 필수
+  TextEditingController _pwController =
+      TextEditingController(); // TextFormField 를 사용시 필수
 
   @override
   void dispose() {
@@ -55,14 +57,14 @@ class _SignInFormState extends State<SignInForm> {
               obscureText: true,
               decoration: textInputDecoration('Password'),
               validator: (text) {
-                if (text.isNotEmpty && text.length > 6) {
+                if (text.isNotEmpty && text.length > 1) {
                   return null;
                 } else {
-                  return '비밀번호는 6자리 이상 입력하세요.';
+                  return '비밀번호는 1자리 이상 입력하세요.';
                 }
               },
             ),
-            FlatButton(
+            TextButton(
                 onPressed: () {},
                 child: Align(
                   alignment: Alignment.centerRight,
@@ -71,21 +73,18 @@ class _SignInFormState extends State<SignInForm> {
                     style: TextStyle(color: Colors.blue),
                   ),
                 )),
-
             _submitButton(context),
             SizedBox(
               height: common_xs_gap,
             ),
             OrDivider(),
-            FlatButton.icon(
+            TextButton.icon(
               onPressed: () {},
-              textColor: Colors.blue,
+              style: TextButton.styleFrom(primary: Colors.blue),
               icon: ImageIcon(
                 AssetImage('assets/images/facebook.png'),
               ),
-              label: Text(
-                'Login with Facebook',
-              ),
+              label: Text('Login with Facebook'),
             ),
           ],
         ),
@@ -93,8 +92,8 @@ class _SignInFormState extends State<SignInForm> {
     );
   }
 
-  FlatButton _submitButton(BuildContext context) {
-    return FlatButton(
+  TextButton _submitButton(BuildContext context) {
+    return TextButton(
       onPressed: () {
         if (_formKey.currentState.validate()) {
           print('Validation success!!');
@@ -107,14 +106,14 @@ class _SignInFormState extends State<SignInForm> {
               MaterialPageRoute(builder: (context) => SignUpForm()));
         }
       },
-      color: Colors.blue,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(6),
-      ),
-      child: Text(
-        'Log in',
-        style: TextStyle(color: Colors.white),
-      ),
+      child: Text('Log in'),
+      style: TextButton.styleFrom(
+          primary: Colors.white,
+          backgroundColor: Colors.blue,
+          onSurface: Colors.grey,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(6),
+          )),
     );
   }
 }

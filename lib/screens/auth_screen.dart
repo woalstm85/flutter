@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_instagram/screens/profile_screen.dart';
+
+//import 'package:flutter_instagram/screens/profile_screen.dart';
 import 'package:flutter_instagram/widgets/fade_stack.dart';
-import 'package:flutter_instagram/widgets/sign_in_form.dart';
-import 'package:flutter_instagram/widgets/sign_up_form.dart';
+
+//import 'package:flutter_instagram/widgets/sign_in_form.dart';
+//import 'package:flutter_instagram/widgets/sign_up_form.dart';
 
 class AuthScreen extends StatefulWidget {
   @override
@@ -28,26 +30,10 @@ class _AuthScreenState extends State<AuthScreen> {
               bottom: 0,
               height: 40,
               child: Container(
-                color: Colors.white,
-                child: FlatButton(
-                  shape: Border(
-                    top: BorderSide(color: Colors.grey[300])
-                  ),
-                  child: RichText(
-                      text: TextSpan(
-                          text: (selectedForm == 1)
-                              ? 'Already have an account?'
-                              : "Don't have an account?",
-                          style: TextStyle(color: Colors.grey),
-                          children: [
-                        TextSpan(
-                            text: (selectedForm == 0)
-                                ? " Sign In"
-                                : " Sign Up",
-                            style: TextStyle(
-                                color: Colors.blue,
-                                fontWeight: FontWeight.bold)),
-                      ])),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border(top: BorderSide(color: Colors.grey))),
+                child: TextButton(
                   onPressed: () {
                     setState(() {
                       if (selectedForm == 0) {
@@ -57,6 +43,19 @@ class _AuthScreenState extends State<AuthScreen> {
                       }
                     });
                   },
+                  child: RichText(
+                      text: TextSpan(
+                          text: (selectedForm == 1)
+                              ? 'Already have an account?'
+                              : "Don't have an account?",
+                          style: TextStyle(color: Colors.grey),
+                          children: [
+                        TextSpan(
+                            text: (selectedForm == 0) ? " Sign In" : " Sign Up",
+                            style: TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.bold)),
+                      ])),
                 ),
               ),
             ),

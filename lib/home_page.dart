@@ -1,3 +1,4 @@
+import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram/constants/screen_size.dart';
 import 'package:flutter_instagram/screens/camera_screen.dart';
@@ -96,7 +97,7 @@ class _HomepageState extends State<HomePage> {
      * Navigator :  페이지 이동을 위한 class
      * push : Stack으로 페이지위에 카메라 페이지를 띄운거라 <- (back) 버튼이 자동으로 생김
      */
-    if (await checkIfPermissinGranted(context))
+    if (await checkIfPermissionGranted(context))
       Navigator.of(context)
           .push(MaterialPageRoute(builder: (context) => CameraScreen()));
     else {
@@ -106,6 +107,7 @@ class _HomepageState extends State<HomePage> {
           label: 'OK',
           onPressed: () {
             _key.currentState.hideCurrentSnackBar();
+            AppSettings.openAppSettings();
           },
         ),
       );
@@ -113,7 +115,7 @@ class _HomepageState extends State<HomePage> {
     }
   }
 
-  Future<bool> checkIfPermissinGranted(BuildContext context) async {
+  Future<bool> checkIfPermissionGranted(BuildContext context) async {
     Map<Permission, PermissionStatus> statuses =
         await [Permission.camera, Permission.microphone].request();
     bool permitted = true;

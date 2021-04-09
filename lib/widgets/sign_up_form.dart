@@ -63,10 +63,10 @@ class _SignUpFormState extends State<SignUpForm> {
                 obscureText: true,
                 decoration: textInputDecoration('Password'),
                 validator: (text) {
-                  if (text.isNotEmpty && text.length > 5) {
+                  if (text.isNotEmpty && text.length > 1) {
                     return null;
                   } else {
-                    return '비밀번호는 6자리이상 입력해주세요.';
+                    return '비밀번호는 1자리이상 입력해주세요.';
                   }
                 },
               ),
@@ -94,9 +94,9 @@ class _SignUpFormState extends State<SignUpForm> {
                 height: common_s_gap,
               ),
               OrDivider(),
-              FlatButton.icon(
+              TextButton.icon(
                 onPressed: () {},
-                textColor: Colors.blue,
+                style: TextButton.styleFrom(primary: Colors.blue),
                 icon: ImageIcon(
                   AssetImage('assets/images/facebook.png'),
                 ),
@@ -111,9 +111,8 @@ class _SignUpFormState extends State<SignUpForm> {
     );
   }
 
-  FlatButton _submitButton(BuildContext context) {
-    return FlatButton(
-      color: Colors.blue,
+  TextButton _submitButton(BuildContext context) {
+    return TextButton(
       onPressed: () {
         // _formKey.currentState.validate : Form에 있는 validator들을 실행.
         if (_formKey.currentState.validate()) {
@@ -127,13 +126,15 @@ class _SignUpFormState extends State<SignUpForm> {
               MaterialPageRoute(builder: (context) => HomePage()));
         }
       },
-      child: Text(
-        'Join',
-        style: TextStyle(color: Colors.white),
-      ),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+      child: Text('Join'),
+      style: TextButton.styleFrom(
+          primary: Colors.white,
+          backgroundColor: Colors.blue,
+          onSurface: Colors.grey,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(6),
+          )),
     );
   }
 }
-
 

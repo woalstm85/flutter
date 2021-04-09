@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram/constants/material_white.dart';
-import 'package:flutter_instagram/home_page.dart';
+//import 'package:flutter_instagram/home_page.dart';
 import 'package:flutter_instagram/screens/auth_screen.dart';
 
 void main() {
