@@ -4,6 +4,7 @@ import 'package:flutter_instagram/constants/screen_size.dart';
 import 'package:flutter_instagram/screens/camera_screen.dart';
 import 'package:flutter_instagram/screens/feed_screen.dart';
 import 'package:flutter_instagram/screens/profile_screen.dart';
+import 'package:flutter_instagram/screens/search_screen.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class HomePage extends StatefulWidget {
@@ -33,9 +34,7 @@ class _HomepageState extends State<HomePage> {
 
   static List<Widget> _screens = <Widget>[
     FeedScreen(),
-    Container(
-      color: Colors.amberAccent,
-    ),
+    SearchScreen(),
     Container(
       color: Colors.deepOrangeAccent,
     ),

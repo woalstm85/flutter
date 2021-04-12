@@ -4,13 +4,11 @@ import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-//import 'package:flutter_instagram/constants/common_size.dart';
 import 'package:flutter_instagram/constants/screen_size.dart';
 import 'package:flutter_instagram/models/camera_state.dart';
 import 'package:flutter_instagram/screens/share_post_screen.dart';
 import 'package:flutter_instagram/widgets/my_progress_indicator.dart';
-import 'package:path/path.dart';
-import 'package:path_provider/path_provider.dart';
+
 import 'package:provider/provider.dart';
 
 class TakePhoto extends StatefulWidget {
@@ -23,6 +21,7 @@ class TakePhoto extends StatefulWidget {
 }
 
 class _TakePhotoState extends State<TakePhoto> {
+
   Widget _progress = MyProgressIndicator();
 
   @override
@@ -79,13 +78,16 @@ class _TakePhotoState extends State<TakePhoto> {
   }
 
   void _attemptTakePhoto(CameraState cameraState, BuildContext context) async {
-    final String timeInMilli = DateTime.now().millisecondsSinceEpoch.toString(); // timeInMilli : 파일명으로 쓰기위해
+    final String timeInMilli = DateTime.now()
+        .millisecondsSinceEpoch
+        .toString(); // timeInMilli : 파일명으로 쓰기위해
     try {
-      String path = join((await getTemporaryDirectory()).path, '$timeInMilli.png'); // getTemporaryDirectory()).path : 폴더위치
-      XFile pcitureTaken = await cameraState.controller.takePicture();
+      //String path = join((await getTemporaryDirectory()).path, '$timeInMilli.png'); // getTemporaryDirectory()).path : 폴더위치
+      XFile pictureTaken = await cameraState.controller.takePicture();
 
-      File imageFile = File(pcitureTaken.path);
-      Navigator.of(context).push(MaterialPageRoute(builder: (_)=>SharePostScreen(imageFile)));
+      File imageFile = File(pictureTaken.path);
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (_) => SharePostScreen(imageFile)));
     } catch (e) {}
   }
 }

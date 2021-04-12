@@ -5,7 +5,9 @@ import 'package:flutter_instagram/widgets/my_gallery.dart';
 import 'package:flutter_instagram/widgets/take_photo.dart';
 import 'package:provider/provider.dart';
 
+
 class CameraScreen extends StatefulWidget {
+
   CameraState _cameraState = CameraState();
   GalleryState _galleryState = GalleryState();
 

@@ -6,6 +6,7 @@ class CameraState extends ChangeNotifier {
   CameraDescription _cameraDescription;
   bool _readyTakePhoto = false;
 
+
   void dispose() {
     if (_controller != null)
       _controller.dispose();
@@ -33,7 +34,7 @@ class CameraState extends ChangeNotifier {
 
   void setCameraDescription(CameraDescription cameraDescription) {
     _cameraDescription = cameraDescription;
-    _controller = CameraController(_cameraDescription, ResolutionPreset.high);
+    _controller = CameraController(_cameraDescription, ResolutionPreset.medium);
   }
 
   Future<bool> initialize() async {
