@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_instagram/screens/auth_screen.dart';
+import 'package:flutter_instagram/models/firebase_auth_state.dart';
+import 'package:provider/provider.dart';
 
 class ProfileSideMenu extends StatelessWidget {
   final double menuWidth;
@@ -33,8 +34,7 @@ class ProfileSideMenu extends StatelessWidget {
               leading: Icon(Icons.exit_to_app, color: Colors.black87),
               title: Text('Sign out'),
               onTap: () {
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => AuthScreen()));
+                Provider.of<FirebaseAuthState>(context, listen: false).signOut();
               },
             )
           ],

@@ -78,9 +78,6 @@ class _TakePhotoState extends State<TakePhoto> {
   }
 
   void _attemptTakePhoto(CameraState cameraState, BuildContext context) async {
-    final String timeInMilli = DateTime.now()
-        .millisecondsSinceEpoch
-        .toString(); // timeInMilli : 파일명으로 쓰기위해
     try {
       //String path = join((await getTemporaryDirectory()).path, '$timeInMilli.png'); // getTemporaryDirectory()).path : 폴더위치
       XFile pictureTaken = await cameraState.controller.takePicture();

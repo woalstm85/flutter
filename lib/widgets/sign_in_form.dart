@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram/constants/auth_input_decor.dart';
 import 'package:flutter_instagram/constants/common_size.dart';
+import 'package:flutter_instagram/models/firebase_auth_state.dart';
 import 'package:flutter_instagram/widgets/or_divider.dart';
-import 'package:flutter_instagram/widgets/sign_up_form.dart';
+import 'package:provider/provider.dart';
 
 class SignInForm extends StatefulWidget {
   @override
@@ -73,13 +74,19 @@ class _SignInFormState extends State<SignInForm> {
                     style: TextStyle(color: Colors.blue),
                   ),
                 )),
+            SizedBox(
+              height: common_s_gap,
+            ),
             _submitButton(context),
             SizedBox(
-              height: common_xs_gap,
+              height: common_s_gap,
             ),
             OrDivider(),
             TextButton.icon(
-              onPressed: () {},
+              onPressed: () {
+                Provider.of<FirebaseAuthState>(context, listen: false)
+                    .changeFirebaseAuthStatus(FirebaseAuthStatus.signin);
+              },
               style: TextButton.styleFrom(primary: Colors.blue),
               icon: ImageIcon(
                 AssetImage('assets/images/facebook.png'),
@@ -102,8 +109,9 @@ class _SignInFormState extends State<SignInForm> {
            * 예 ) 첫화면이 로그인 페이지에서 로그인 후 메인페이지로 이동하면 메인페이지가 route 페이지가 된다.
            * push : 로그인 후  메인페이지가 로그인페이지위로 보이는 것.
            */
-          Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => SignUpForm()));
+
+          Provider.of<FirebaseAuthState>(context, listen: false)
+              .login(context, email: _emailController.text, password: _pwController.text);
         }
       },
       child: Text('Log in'),

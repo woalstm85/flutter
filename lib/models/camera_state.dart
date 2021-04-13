@@ -14,6 +14,7 @@ class CameraState extends ChangeNotifier {
     _cameraDescription = null;
     _readyTakePhoto = false;
     notifyListeners();
+    super.dispose();
   }
 
   void getReadyToTakePhoto() async {

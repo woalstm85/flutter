@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_instagram/constants/auth_input_decor.dart';
 import 'package:flutter_instagram/constants/common_size.dart';
-import 'package:flutter_instagram/home_page.dart';
+import 'package:flutter_instagram/models/firebase_auth_state.dart';
 import 'package:flutter_instagram/widgets/or_divider.dart';
+import 'package:provider/provider.dart';
 
 class SignUpForm extends StatefulWidget {
   @override
@@ -95,7 +96,10 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
               OrDivider(),
               TextButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  Provider.of<FirebaseAuthState>(context, listen: false)
+                      .changeFirebaseAuthStatus(FirebaseAuthStatus.signin);
+                },
                 style: TextButton.styleFrom(primary: Colors.blue),
                 icon: ImageIcon(
                   AssetImage('assets/images/facebook.png'),
@@ -122,8 +126,9 @@ class _SignUpFormState extends State<SignUpForm> {
            * 예 ) 첫화면이 로그인 페이지에서 로그인 후 메인페이지로 이동하면 메인페이지가 route 페이지가 된다.
            * push : 로그인 후  메인페이지가 로그인페이지위로 보이는 것.
            */
-          Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => HomePage()));
+
+          Provider.of<FirebaseAuthState>(context, listen: false)
+              .registerUser(context, email: _emailController.text, password: _pwController.text);
         }
       },
       child: Text('Join'),
@@ -137,4 +142,3 @@ class _SignUpFormState extends State<SignUpForm> {
     );
   }
 }
-
