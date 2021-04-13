@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Instaclone</string>
+    <string name="facebook_app_id">590908472311294</string>
+    <string name="fb_login_protocol_scheme">fb590908472311294</string>
+
+</resources>

@@ -1,11 +1,16 @@
+import 'dart:ui';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
+import 'package:flutter_instagram/utils/simple_snackbar.dart';
 
 class FirebaseAuthState extends ChangeNotifier {
   FirebaseAuthStatus _firebaseAuthStatus = FirebaseAuthStatus.signout;
   FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   User _firebaseUser;
+  FacebookLogin _facebookLogin;
 
   void watchAuthStatus() {
     _firebaseAuth.authStateChanges().listen((firebaseUser) {
@@ -78,11 +83,14 @@ class FirebaseAuthState extends ChangeNotifier {
     });
   }
 
-  void signOut() {
+  void signOut() async {
     _firebaseAuthStatus = FirebaseAuthStatus.signout;
     if (_firebaseUser != null) {
       _firebaseUser = null;
-      _firebaseAuth.signOut();
+      await _firebaseAuth.signOut();
+      if(await _facebookLogin.isLoggedIn){
+        await _facebookLogin.logOut();
+      }
     }
     notifyListeners();
   }
@@ -96,6 +104,41 @@ class FirebaseAuthState extends ChangeNotifier {
       } else {
         _firebaseAuthStatus = FirebaseAuthStatus.signout;
       }
+    }
+    notifyListeners();
+  }
+
+  void loginWithFacebook(BuildContext context) async {
+    if(_facebookLogin == null)
+    _facebookLogin = FacebookLogin();
+    final result = await _facebookLogin.logIn(['email']);
+
+    switch (result.status) {
+      case FacebookLoginStatus.loggedIn:
+        _handleFacebookTokenWithFirebase(
+            context, result.accessToken.token); // 페이스북 로그인요청시 token을 가져옴.
+        break;
+      case FacebookLoginStatus.cancelledByUser:
+        simpleSnackbar(context, 'Facebook 로그인 취소.');
+        break;
+      case FacebookLoginStatus.error:
+        simpleSnackbar(context, 'Facebook 로그인 중 오류.');
+        break;
+    }
+  }
+
+  void _handleFacebookTokenWithFirebase(
+      BuildContext context, String token) async {
+    final AuthCredential credential = FacebookAuthProvider.credential(token);
+
+    final UserCredential userCredential =
+        await _firebaseAuth.signInWithCredential(credential);
+    final User user = userCredential.user;
+
+    if (user == null) {
+      simpleSnackbar(context, '페북 로그인이 지연되고있어요. 나중에 다시 해보세요.');
+    } else {
+      _firebaseUser = user;
     }
     notifyListeners();
   }

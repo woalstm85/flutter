@@ -98,7 +98,7 @@ class _SignUpFormState extends State<SignUpForm> {
               TextButton.icon(
                 onPressed: () {
                   Provider.of<FirebaseAuthState>(context, listen: false)
-                      .changeFirebaseAuthStatus(FirebaseAuthStatus.signin);
+                      .loginWithFacebook(context);
                 },
                 style: TextButton.styleFrom(primary: Colors.blue),
                 icon: ImageIcon(
