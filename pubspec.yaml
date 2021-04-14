@@ -30,15 +30,16 @@ dependencies:
   cupertino_icons: ^1.0.2
   cached_network_image: ^2.2.0+1
   camera: ^0.8.1
-  permission_handler: ^6.1.1
+  permission_handler: ^5.0.1+1
   app_settings: ^4.1.0
   provider: ^5.0.0
   path: ^1.8.0
   path_provider: ^2.0.1
   local_image_provider: ^2.1.0
-  firebase_auth: ^1.0.3
-  firebase_core: ^1.0.3
+  firebase_auth: ^0.16.1
+
   flutter_facebook_login: ^3.0.0
+  cloud_firestore: ^0.13.7
 
 
 dev_dependencies:

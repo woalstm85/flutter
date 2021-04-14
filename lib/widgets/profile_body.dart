@@ -3,8 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram/constants/common_size.dart';
 import 'package:flutter_instagram/constants/screen_size.dart';
+import 'package:flutter_instagram/models/user_model_state.dart';
 import 'package:flutter_instagram/screens/profile_screen.dart';
 import 'package:flutter_instagram/widgets/rounded_avatar.dart';
+import 'package:provider/provider.dart';
 
 class ProfileBody extends StatefulWidget {
   final Function onMenuChanged;
@@ -80,7 +82,7 @@ class _ProfileBodyState extends State<ProfileBody>
                         ),
                       ],
                     ),
-                    _username(),
+                    _username(context),
                     _userBio(),
                     Padding(padding: const EdgeInsets.symmetric(vertical: 6)),
                     // or SizedBox(height: 6),
@@ -175,11 +177,14 @@ class _ProfileBodyState extends State<ProfileBody>
     );
   }
 
-  Widget _username() {
+  Widget _username(BuildContext context) {
+    UserModelState userModelState = Provider.of<UserModelState>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: common_gap),
       child: Text(
-        'Jae Min',
+        userModelState == null || userModelState.userModel == null
+            ? ""
+            : userModelState.userModel.username,
         style: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 14,
@@ -199,12 +204,20 @@ class _ProfileBodyState extends State<ProfileBody>
               children: [
                 TableRow(
                   children: [
-                    Text('1985.09.04', style: TextStyle(fontSize: 11, fontWeight: FontWeight.w300), ),
+                    Text(
+                      '1985.09.04',
+                      style:
+                          TextStyle(fontSize: 11, fontWeight: FontWeight.w300),
+                    ),
                   ],
                 ),
                 TableRow(
                   children: [
-                    Text('Show me the money!!', style: TextStyle(fontSize: 11, fontWeight: FontWeight.w300), ),
+                    Text(
+                      'Show me the money!!',
+                      style:
+                          TextStyle(fontSize: 11, fontWeight: FontWeight.w300),
+                    ),
                   ],
                 ),
               ],

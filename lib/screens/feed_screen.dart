@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_instagram/repo/user_network_repository.dart';
 import 'package:flutter_instagram/widgets/post.dart';
 
 class FeedScreen extends StatelessWidget {
@@ -7,35 +8,40 @@ class FeedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CupertinoNavigationBar(
-        leading: IconButton(  // leading : 타일의 앞부분을 구성
+        leading: IconButton(
+            // leading : 타일의 앞부분을 구성
             onPressed: null,
             icon: Icon(
               CupertinoIcons.photo_camera_solid, // or Icons.camera_alt,
               color: Colors.black87,
             )),
-        middle: Text( // middle : 타일의 중간을 구성
+        middle: Text(
+          // middle : 타일의 중간을 구성
           'instagram',
           style: TextStyle(fontFamily: 'VeganStyle'),
         ),
-        trailing: Row(  // trailing : 타일의 뒷부분을 구성
+        trailing: Row(
+          // trailing : 타일의 뒷부분을 구성
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             IconButton(
-              onPressed: null,
+              onPressed: (){
+
+              },
               icon: ImageIcon(
                 AssetImage('assets/images/actionbar_camera.png'),
                 color: Colors.black87,
               ),
             ),
-            /** 계속 추가할수 있음
             IconButton(
-              onPressed: null,
+              onPressed: (){
+
+              },
               icon: ImageIcon(
-                AssetImage('assets/images/actionbar_camera.png'),
+                AssetImage('assets/images/direct_message.png'),
                 color: Colors.black87,
               ),
             ),
-            **/
           ],
         ),
       ),
@@ -51,4 +57,3 @@ class FeedScreen extends StatelessWidget {
     return Post(index);
   }
 }
-
